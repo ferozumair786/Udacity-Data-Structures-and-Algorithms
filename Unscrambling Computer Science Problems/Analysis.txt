@@ -1,0 +1,63 @@
+Overall:
+Each of the tasks starts with two loops to read the CSV files
+The time of the loop varies with the size of the CSV files
+for the texts file, the csv reader could be represented as O(t), where t is the lenght of texts file
+for the calls file, the csv reader could be represented as O(c), where c is the length of the calls file
+So we can say that each task at least has a minimum time analysis of O(t) + O(c)
+However, since the file size is constant and doesn't change between tasks, or while a task runs we can substitute the actual lengths of the files and consider this run time a constant baseline:
+O(t) + O(c)
+= O(len(texts)) + O(len(calls))
+= O(9072) + O(5213)
+
+Task0:
+Using Python's built in list index comprehension, when we get the first or last element of a list it should have a constant requirement.
+Therefore, I'd say that the algorithmic complexity of Task0 is constant, aka O(1)
+
+
+Using this for reference: https://wiki.python.org/moin/TimeComplexity
+
+Task1:
+I have two for loops, one for each of the files. Each for loop will have a linear complexity, O(n) and O(m). 
+So far, we have a complexity of O(n) + O(m).
+However, on Python's website it says that whenever we check that something is in a list, the complexity is also O(n)
+Since I am doing this twice in each loop, the complexity can be represented as:
+O(n) * O(2n) = O(2n^2) for the first loop
+
+The time complexity overall will be:
+O(2n^2) + O(2m^2)
+
+In the best case scenario, the lenghts of the two files will be of a similar magnitude and in the worst case scenario one file will be a magnitude larger. 
+Therefore, I would argue that we can assume the complexity is quadratic at O(4n^2)
+
+Task2:
+Time complexity will be very similar, with two loops and two instances of the 'x in list' notation. However, I also now have two instances of the get method with also has a time complexity of O(n)
+This is worst case complexity, but I want to account for that, especially since the get method is within the 
+
+Our time complexity for each loop will double to become O(8n^2). This is only marginally worse than Task2
+
+Task3: 
+This has two parts, and both parts take advantage of one loop that I have. This loop has three 'x in list' calls 
+
+Therefore, the base required for both parts is going to be O(n) * O(3n) = O(3n^2)
+
+Since the percentage calculation is pretty straightforwards, it will have a constant complexity of O(1)
+Therefore, part B has a time complexity of O(3n^2) + O(1)
+
+Meanwhile, for Part A I have also had to add a sort and a printing loop. The sort costs us O(nlog(n)) while the second loop costs us O(n).
+In the best case scenario, the distinct list will be a magnitude smaller than our original list and could be minimized to insignificance. 
+However, in the worst case scenario the original list provided is distinct and then the loops take the same amount of time. 
+
+Accounting for the worst case scenario, part A has the time complexity of O(3n^2 + n + nlog(n))
+
+Task4:
+For this one, we start out with the same loops as task1 with a complexity of O(4n^2)
+
+We then have a set difference, a sort and a printing loop.
+
+The set difference is interesting, as Python's website indicates that this explicitly costs O(len(s)) where s is the largest set. 
+This seems linear so I'm going to say O(n)
+
+To account for all of this, the complexity of Task4 will be O(4n^2 + 2n + nlog(n))
+
+
+
