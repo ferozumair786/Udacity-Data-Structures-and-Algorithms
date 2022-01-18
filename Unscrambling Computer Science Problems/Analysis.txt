@@ -40,24 +40,28 @@ This has two parts, and both parts take advantage of one loop that I have. This 
 
 Therefore, the base required for both parts is going to be O(n) * O(3n) = O(3n^2)
 
+*The grader gave me feedback and convinced me that I didn't need to do three 'x in list' calls if I just used a set instead of a list, since set is always going to be unique. 
+This gives me a timecomplexity of O(1) for each step
+This now gives me O(n) * O(3) = O(3n)*
+
 Since the percentage calculation is pretty straightforwards, it will have a constant complexity of O(1)
-Therefore, part B has a time complexity of O(3n^2) + O(1)
+Therefore, part B has a time complexity of O(3n) + O(1)
 
 Meanwhile, for Part A I have also had to add a sort and a printing loop. The sort costs us O(nlog(n)) while the second loop costs us O(n).
 In the best case scenario, the distinct list will be a magnitude smaller than our original list and could be minimized to insignificance. 
 However, in the worst case scenario the original list provided is distinct and then the loops take the same amount of time. 
 
-Accounting for the worst case scenario, part A has the time complexity of O(3n^2 + n + nlog(n))
+Accounting for the worst case scenario, part A has the time complexity of O(4n + nlog(n))
 
 Task4:
-For this one, we start out with the same loops as task1 with a complexity of O(4n^2)
+For this one, we start out with the same loops as task1 but with sets from task3 with a complexity of O(4n)
 
 We then have a set difference, a sort and a printing loop.
 
 The set difference is interesting, as Python's website indicates that this explicitly costs O(len(s)) where s is the largest set. 
 This seems linear so I'm going to say O(n)
 
-To account for all of this, the complexity of Task4 will be O(4n^2 + 2n + nlog(n))
+To account for all of this, the complexity of Task4 will be O(6n + nlog(n))
 
 
 

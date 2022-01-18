@@ -46,29 +46,32 @@ The percentage should have 2 decimal digits
 """
 
 #Part A
-distinct_areacodes = []
+
+# Attempt at using sets for optimization
+distinct_areacodes = set()
 from_bangalore = 0
 to_bangalore = 0
 for call in calls:
     if call[0][0:5] == '(080)':
         from_bangalore += 1
         if call[1][0] == '(0':
-            if call[1][1:5] not in distinct_areacodes:
-                distinct_areacodes.append(call[1][1:5])
+            # if call[1][1:call.find(')')] not in distinct_areacodes:
+            distinct_areacodes.add(call[1][1:call.find(')')])
         if call[1][0:5] == '(080)':
             to_bangalore += 1
-        if call[1][0:4] == '140':
-            if call[1][0:4] not in distinct_areacodes:
-                distinct_areacodes.append(call[1][0:4])             
+        # I also fixed the check for area code 140
+        if call[1][0:3] == '140':
+            # if call[1][0:3] not in distinct_areacodes:
+            distinct_areacodes.add(call[1][0:3])             
         if call[1][0] in ('7', '8', '9'):
-            if call[1][0:5] not in distinct_areacodes:
-                distinct_areacodes.append(call[1][0:5])
+            # if call[1][0:4] not in distinct_areacodes:
+            distinct_areacodes.add(call[1][0:4])
 
-distinct_areacodes.sort()
+# distinct_areacodes.sort()
 print('The numbers called by people in Bangalore have codes:/n')
-for code in distinct_areacodes:
+for code in sorted(distinct_areacodes):
     print(code)
 
 #percent from Bangalore to Bangalore:
 bangalore_pct = round(to_bangalore/from_bangalore*100, 2)
-print('%d percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %(bangalore_pct))
+print('%s percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %(bangalore_pct))

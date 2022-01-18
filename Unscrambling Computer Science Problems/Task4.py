@@ -26,29 +26,29 @@ The list of numbers should be print out one per line in lexicographic order with
 """
 
 #get the distinct number of phone numbers from texts list
-distinct_texters = []
-text_receivers = []
+distinct_texters = set()
+text_receivers = set()
 for text in texts:
-    if text[0] not in distinct_texters:
-        distinct_texters.append(text[0])
-    if text[1] not in text_receivers:
-        text_receivers.append(text[1])
+    # if text[0] not in distinct_texters:
+    distinct_texters.add(text[0])
+    # if text[1] not in text_receivers:
+    text_receivers.add(text[1])
 
-distinct_callers = []
-call_receivers = []
+distinct_callers = set()
+call_receivers = set()
 #get the distinct number of records from calls
 for call in calls:
-    if call[0] not in distinct_callers:
-        distinct_callers.append(call[0])
-    if call[1] not in call_receivers:
-        call_receivers.append(call[1])
+    # if call[0] not in distinct_callers:
+    distinct_callers.add(call[0])
+    # if call[1] not in call_receivers:
+    call_receivers.add(call[1])
 
 #calls who have either never received one, sent or received a text
-telemarketers = set(distinct_callers) - set(call_receivers) - set(distinct_texters) - set(text_receivers)
+telemarketers = distinct_callers - call_receivers - distinct_texters - text_receivers
 
-tele = [telemarketers]
-tele.sort()
+# tele = [telemarketers]
+# tele.sort()
 
 print('These numbers could be telemarketers: ')
-for t in tele[0]:
+for t in sorted(telemarketers):
     print(t)
