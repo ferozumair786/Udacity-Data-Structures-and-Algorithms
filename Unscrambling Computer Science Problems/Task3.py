@@ -54,7 +54,7 @@ to_bangalore = 0
 for call in calls:
     if call[0][0:5] == '(080)':
         from_bangalore += 1
-        if call[1][0] == '(0':
+        if call[1][0:2] == '(0':
             # if call[1][1:call.find(')')] not in distinct_areacodes:
             distinct_areacodes.add(call[1][1:call.find(')')])
         if call[1][0:5] == '(080)':
